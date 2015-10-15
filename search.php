@@ -1,16 +1,15 @@
-<?php get_header();?>
+<?php
+
+get_header();?>
 	
-	<div class="clear"></div>
-    
+	    
+    <div class="clear"></div>
     <div id="primary" class="site-content">
-    
-    <div id="slider">
-    <!--slider code here if used -->
-    </div><!--slider-->
-    
     <div id="content">
+    <h2><? _e( 'Search results for "' . get_search_query() . '"'); ?></h2>
     
     <?php if(have_posts()) : while(have_posts()) : the_post(); ?>
+    
     
     <article class="halfcol left">
     	<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -25,17 +24,17 @@
     	by <?php the_author(); ?>
     	<?php comments_number("0 comments", "1 comment", "% comments"); ?>
 		</small></p>    
-	<br /><hr /><br />	
-    
+		
+    <br /><hr /><br />
 	
-	<?php endwhile; else: ?>
-    	<p>Sorry no posts to display</p>
-        
+	<?php endwhile; 
+	get_search_form();
+	else: ?>
+    	<p><?php _e( 'Sorry, your search for "' . get_search_query() . '" returned no results.'); ?></p>
+    
     <?php endif; ?>
-   <?php next_posts_link( 'Older Posts', $the_query->max_num_pages );
-previous_posts_link( 'Newer Posts' ); ?> 
-   <br /><br />
    
+   <br><br>
    
 
    
